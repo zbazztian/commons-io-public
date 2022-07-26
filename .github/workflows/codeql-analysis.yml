@@ -29,7 +29,7 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         debug: true
-        packs: ghas-trials/java-debug-queries,ghas-trials/javascript-debug-queries
+        packs: ghas-trials/${{ matrix.language }}-debug-queries
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2
