@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java', 'javascript' ]
+        language: [ 'java', 'javascript', 'csharp' ]
 
     steps:
     - name: Checkout repository
@@ -30,7 +30,12 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Autobuild
+      if: matrix.language == 'java' || matrix.language == 'javascript'
       uses: github/codeql-action/autobuild@v2
+
+    - name: Compile C#
+      if: matrix.language == 'csharp'
+      run: ./csharp-code/compile
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
