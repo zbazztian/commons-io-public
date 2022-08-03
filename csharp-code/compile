@@ -1,4 +1,5 @@
 #!/bin/sh
 set -eu
 
-csc test.cs
+HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+csc "${HERE}/test.cs"
